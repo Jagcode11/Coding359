@@ -21,8 +21,9 @@
 	//document.getElementById("nextRoundButton").disabled = true
 document.getElementById("nextRound").style.visibility = "hidden"
 </script>
-<table width=100% border=2px>
+<table width=100% >
 	<tr>
+<!-- od is Opponent Diamond -->
 		<td><img id="od1" src="images/gd.jpg" style="width:120px;height:100px"></td>
 		<td><img id="od2" src="images/gd.jpg" style="width:120px;height:100px"></td>
 		<td><img id="od3" src="images/gd.jpg" style="width:120px;height:100px"></td>
@@ -44,13 +45,14 @@ document.getElementById("nextRound").style.visibility = "hidden"
 		<td></td>
 		<td></td>
 		<td></td>
+		<!-- md is my Diamond or user Diamond  gd is grey diamond -->
 		<td><img id="md1" src="images/gd.jpg" style="width:120px;height:100px"></td>
 		<td><img id="md2" src="images/gd.jpg" style="width:120px;height:100px"></td>
 		<td><img id="md3" src="images/gd.jpg" style="width:120px;height:100px"></td>
 
 	</tr>
 </table>
-<table border=3px>
+<table >
 	<tr>
 		<td></td>
 		<td></td>
@@ -69,10 +71,12 @@ document.getElementById("nextRound").style.visibility = "hidden"
 	<tr>
 		<td></td>
 		<td></td>
+		<!-- Fool the program by loading blank image not  a good idea .. better use CSS and use style visibility -->
 		<td><img id="aiChoice" src="images/blank.jpg" style="width:240px;height:240px" ></td>
 		<td></td>
 		<td></td>
 		<td></td>
+		<!-- use ID very intelligently to remember later  -->
 		<td><img id="myStone" src="images/stone.jpg" style="width:240px;height:240px" onclick="choiceSelected('stone')"></td>
 		<td><img id="myPaper" src="images/paper.jpg" style="width:240px;height:240px" onclick="choiceSelected('paper')"></td>
 		<td><img id="myScissors"src="images/scissors.jpg" style="width:240px;height:240px" onclick="choiceSelected('scissors')"></td>
@@ -114,6 +118,7 @@ document.getElementById("nextRound").style.visibility = "hidden"
 	// 	document.getElementById("od1").src = "images/gd.jpg"
 	// }
 	function choiceSelected(userChoice) {
+	// increase the round counter 
 		roundCounter++
 		console.log("Round Counter is "+roundCounter)
 		document.getElementById("genMsg").innerHTML="Your selected choice"
@@ -123,6 +128,7 @@ document.getElementById("nextRound").style.visibility = "hidden"
 		console.log("User Selected "+userChoice)
 		console.log("AI selected "+aiChoiceSelected)
 		var oppFilePath="images/"+aiChoiceSelected+".jpg"
+		// replace blank image by the opp file .. stone.jpg .. paper.jpg usw
 		document.getElementById("aiChoice").src=oppFilePath
 		compareChoice(userChoice,aiChoiceSelected)
 		//document.getElementById("nextRoundButton").style.visibility='visible'
@@ -145,7 +151,7 @@ document.getElementById("nextRound").style.visibility = "hidden"
 		console.log("compareChoice module called")
 		console.log(" user choice is "+userChoice+" and AIchoice is "+aiChoice)
 		if (userChoice=="stone") {
-									
+									// hide the remaining images
 									document.getElementById("myPaper").style.visibility = "hidden"
 									document.getElementById("myScissors").style.visibility = "hidden"
 									switch(aiChoice) {

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Test Functions</title>
+  
+  <label for="firstnumber">First number:</label><br>
+  <input type="text" id="firstNumber" name="fname"><br>
+  <label for="secondnumber">Second number:</label><br>
+  <input type="text" id="secondNumber" name="fname"><br>
+  <input type="button" name="readme" value="Click to get Sum" onclick="mySumFunction()">
+  
+
+<script type="text/javascript">
+    //alert("Total is "+"mySumFunction()")
+    function displayNum() {
+        alert(document.getElementById("firstNumber").value)
+    }
+    function mySumFunction() {
+        var total = parseInt(document.getElementById("firstNumber").value) + parseInt(document.getElementById("secondNumber").value)
+var answer=document.createElement("text")
+answer.innerHTML = total
+
+document.body.appendChild(answer)
+    }
+</script>
+</head>
+<body>
+
+</body>
+</html>

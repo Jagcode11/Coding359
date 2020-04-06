@@ -1,0 +1,23 @@
+<body>
+    <h1>Hello world!</h1>
+    <p>My first web page.</p>
+    <script>
+    var num=prompt("Enter the number to be tested")
+	var counter=2
+	var isPrime=true
+		while (counter<=num/2) {
+			console.log("dividing by "+counter)
+			if (num%counter==0) { alert("not prime")
+				console.log(counter)
+				isPrime=false
+			break
+			} 
+			counter++	
+		}
+	if (isPrime) {
+		alert("number is prime")
+	}
+	
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>    
+<html>    
+    
+    <head>    
+        <style>    
+        #box {    
+            width: 110px;    
+            height: 110px;    
+            padding: 10px;    
+            text-align: center;    
+            margin: 0 auto;    
+            border: 1px solid #aaaaaa;    
+        }    
+            
+        body {    
+            text-align: center;    
+        }    
+        </style>    
+    </head>    
+    
+    <body>    
+        <p><b>Drag the stone into this box:</b></p>    
+        <div id="box" ondrop="drop(event)" ondragover="allowDrop(event)"></div>  
+        
+
+<img id="stone" src="images/stone.jpg" title="DS Logo" alt="DS Logo" draggable="true" ondragstart="drag(event)" style="width:120px;height:100px">
+<img id="paper" src="images/paper.jpg" title="DS Logo" alt="DS Logo" draggable="true" ondragstart="drag(event)" style="width:120px;height:100px"> 
+            <script>    
+            function allowDrop(ev)    
+            {    
+                console.log("trying to drop "+ev)
+                ev.preventDefault();    
+            }    
+    
+            function drag(ev)    
+            {    
+                ev.dataTransfer.setData("text", ev.target.id);    
+            }    
+    
+            function drop(ev)    
+            {    
+                
+                ev.preventDefault();    
+                var data = ev.dataTransfer.getData("text"); 
+                console.log(data)
+                if (data=="paper") {
+                    alert("No No No no No")
+                                    }  else {
+                console.log(document.getElementById(data))
+                ev.target.appendChild(document.getElementById(data));
+                }   
+            }  
+                
+
+    </script>      
+</html>    

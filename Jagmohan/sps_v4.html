@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<h1>Welcome to the game</h1>
+<h1 id="roundCounter"></h1>
+<audio id="winSound">
+  <source src="sounds/win.wav" type="audio/wav">
+</audio>
+<audio id="loseSound">
+  <source src="sounds/lose.wav" type="audio/wav">
+</audio>
+<audio id="tieSound">
+  <source src="sounds/tie.wav" type="audio/wav">
+</audio>
+<h1></h1>
+<script type="text/javascript">
+	//document.getElementById("nextRoundButton").style.visibility='hidden'
+	//document.getElementById("nextRoundButton").disabled = true
+document.getElementById("nextRound").style.visibility = "hidden"
+</script>
+<table width=100%>
+	<tr>
+		<td><img id="od1" src="images/gd.jpg" style="width:120px;height:100px"></td>
+		<td><img id="od2" src="images/gd.jpg" style="width:120px;height:100px"></td>
+		<td><img id="od3" src="images/gd.jpg" style="width:120px;height:100px"></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td><img  src="images/blank.jpg" style="width:900px;height:100px"></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td><img id="md1" src="images/gd.jpg" style="width:120px;height:100px"></td>
+		<td><img id="md2" src="images/gd.jpg" style="width:120px;height:100px"></td>
+		<td><img id="md3" src="images/gd.jpg" style="width:120px;height:100px"></td>
+
+	</tr>
+</table>
+<table>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><h1>AI choice</h1></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td><h1 id="genMsg">Select your choice</h1></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td><img id="aiChoice" src="images/blank.jpg" style="width:240px;height:240px" ></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td><img id="myStone" src="images/stone.jpg" style="width:240px;height:240px" onclick="choiceSelected('stone')"></td>
+		<td><img id="myPaper" src="images/paper.jpg" style="width:240px;height:240px" onclick="choiceSelected('paper')"></td>
+		<td><img id="myScissors"src="images/scissors.jpg" style="width:240px;height:240px" onclick="choiceSelected('scissors')"></td>
+		<td></td>
+		<td></td>
+		<td></td>
+
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td><h1><img id="resultImage" src="images/blank.jpg" style="width:400px;height:400px"></h1></td>
+		<td><h1><img id="gameOver" src="images/blank.jpg"></h1></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td><h1><img id="nextRound" src="images/nextround.jpg" onclick="beginNextRound()" visibilty:hidden></td>
+		<td></td>
+
+	</tr>
+</table>
+</body>
+<script type="">
+	var userPoints=0
+	var aiPoints=0
+	var roundCounter=0
+	
+	//document.getElementById("nextRoundButton").style.visibility='hidden'
+	//document.getElementById("nextRoundButton").disabled = true
+document.getElementById("nextRound").style.visibility = "hidden"
+
+	// function replaceMyImage(id) {
+	// 	document.getElementById(id).src = "images/cd.jpg"
+	// }
+	// function resetImage() {
+	// 	document.getElementById("od1").src = "images/gd.jpg"
+	// }
+	function choiceSelected(userChoice) {
+		roundCounter++
+		console.log("Round Counter is "+roundCounter)
+		document.getElementById("genMsg").innerHTML="Your selected choice"
+		document.getElementById("roundCounter").innerHTML="Round "+roundCounter
+		var aiChoiceList=["stone","paper","scissors"]
+		var aiChoiceSelected=aiChoiceList[Math.floor(Math.random()*3)]
+		console.log("User Selected "+userChoice)
+		console.log("AI selected "+aiChoiceSelected)
+		var oppFilePath="images/"+aiChoiceSelected+".jpg"
+		document.getElementById("aiChoice").src=oppFilePath
+		compareChoice(userChoice,aiChoiceSelected)
+		//document.getElementById("nextRoundButton").style.visibility='visible'
+		//document.getElementById("nextRound").src = "images/nextround.jpg"
+		document.getElementById("nextRound").style.visibility = "visible"
+	}
+	function beginNextRound() {
+			//document.getElementById("nextRound").src = "images/blank.jpg"
+			document.getElementById("nextRound").style.visibility = "hidden"
+			document.getElementById("myStone").style.visibility = "visible"
+			document.getElementById("myPaper").style.visibility = "visible"
+			document.getElementById("myScissors").style.visibility = "visible"
+			document.getElementById("aiChoice").src="images/blank.jpg"
+			document.getElementById("genMsg").innerHTML="Select your choice"
+			document.getElementById("resultImage").src="images/blank.jpg"
+			//document.getElementById("nextRoundButton").style.visibility='hidden'
+
+	}
+	function compareChoice(userChoice,aiChoice) {
+		console.log("compareChoice module called")
+		console.log(" user choice is "+userChoice+" and AIchoice is "+aiChoice)
+		if (userChoice=="stone") {
+									
+									document.getElementById("myPaper").style.visibility = "hidden"
+									document.getElementById("myScissors").style.visibility = "hidden"
+									switch(aiChoice) {
+  											case  "stone":
+    											//console.log("Match drawn")
+    											matchDrawn()
+    											break
+  											case "paper":
+   				 								//console.log("AI wins")
+   				 								aiWins()
+   				 								break
+  											case "scissors":
+  												//console.log("user wins")
+  												userWins()
+										}
+									}
+		else if (userChoice=="paper") {
+								document.getElementById("myStone").style.visibility = "hidden"
+									document.getElementById("myScissors").style.visibility = "hidden"
+			switch(aiChoice) {
+  				case  "stone":
+    				//console.log("userWins")
+    				userWins()
+    			break
+  				case "paper":
+   				 	//console.log("Math drawn")
+   				 	matchDrawn()
+   				 break
+  				case "scissors":
+  					//console.log("AI wins")
+  					aiWins()
+  				}
+    // code block
+			}
+			else  {
+							document.getElementById("myStone").style.visibility = "hidden"
+									document.getElementById("myPaper").style.visibility = "hidden"
+			switch(aiChoice) {
+  				case  "stone":
+    				//console.log("AIwins")
+    				aiWins()
+    			break;
+  				case "paper":
+   				 	//console.log("user Wins")
+   				 	userWins()
+   				 break;
+  				case "scissors":
+  					matchDrawn()
+  					//console.log("Match Drawn")
+    // code block
+			}
+
+
+
+
+
+
+
+
+
+		}
+
+	}
+	function aiWins() {
+							console.log("AI wins")
+							console.log("AI points so far "+aiPoints)
+							aiPoints++
+							console.log("AI points after this round "+aiPoints)
+							console.log("Replacing image no "+aiPoints)
+							document.getElementById("od"+aiPoints).src="images/cd.jpg"
+							document.getElementById("roundCounter").innerHTML="Round "+roundCounter+" AI wins"
+							if(aiPoints==3) {
+								console.log("Game Over : AI wins")
+								gameOver()
+							}
+	document.getElementById("resultImage").src="images/youlose.jpg"
+	loseSound.play()
+	}
+	function userWins() {
+		console.log("user wins")
+		console.log("User points so far "+userPoints)
+							userPoints++
+							console.log("User points after this round "+userPoints)
+							console.log("Replacing image no "+userPoints)
+							document.getElementById("md"+userPoints).src="images/cd.jpg"
+							document.getElementById("roundCounter").innerHTML="Round "+roundCounter+" user wins"
+							if(userPoints==3) {
+								console.log("Game over User Wins")
+								gameOver()
+							}
+	document.getElementById("resultImage").src="images/youwin.jpg"
+	winSound.play()
+	}
+	function matchDrawn() {
+
+		document.getElementById("roundCounter").innerHTML="Round "+roundCounter+"Math Drawn"
+		console.log("Match Drawn")
+		document.getElementById("resultImage").src="images/tie.jpg"
+		tieSound.play()
+	}
+	function gameOver() {
+		document.getElementById("gameOver").src="images/gameover.jpg"
+		document.getElementById("nextRound").src="images/blank.jpg"
+	}
+</script>
+</html>

@@ -1,0 +1,30 @@
+<body>
+    <h1>Hello world!</h1>
+    <p>My first web page.</p>
+    <script>
+    var num=prompt("Enter the number to be factorised")
+	var counter=2
+	var divisor=2
+	var	iteration=0
+	var isPrime=true
+	var divisorList = []
+		while (divisor<=num/2) {
+			iteration++
+			//console.log("dividing by "+divisor)
+			while(num%divisor==0) {
+				//console.log("Iteration number: "+iteration+"Dividing "+num+" by "+divisor)
+				divisorList.push(divisor)
+				num=num/divisor
+				//console.log("number reduced to "+num)
+			} 
+			divisor++	
+		}
+	
+		divisorList.push(num)
+		//console.log("Factors are :1 and"+num)
+	
+	console.log("Divisors are"+divisorList)
+	
+    </script>
+</body>
+</html>

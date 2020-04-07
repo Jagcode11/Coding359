@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>    
+<html>    
+    
+    <head>    
+        <style>    
+        #stoneBox {    
+            width: 110px;    
+            height: 110px;    
+            padding: 10px;    
+            text-align: center;    
+            margin: 0 auto;    
+            border: 1px solid #aaaaaa;    
+        }    
+            
+             #paperBox {    
+            width: 110px;    
+            height: 110px;    
+            padding: 10px;    
+            text-align: center;    
+            margin: 0 auto;    
+            border: 1px solid #aaaaaa;    
+        }    
+          
+           #scissorsBox {    
+            width: 110px;    
+            height: 110px;    
+            padding: 10px;    
+            text-align: center;    
+            margin: 0 auto;    
+            border: 1px solid #aaaaaa;    
+        }    
+          
+        body {    
+            text-align: center;    
+        }    
+        </style>    
+    </head>    
+    
+    <body>    
+        <p><b>Drag the stone into this box:</b></p>  
+        <table>
+        	<tr>
+        		<td><h1>Drag Stone here</h1></td>
+        		<td><h1>Drag Paper here</h1></td>
+        		<td><h1>Drag Scissors here</h1></td>
+        	</tr>
+        	<tr>
+        		<td><div id="stoneBox" ondrop="drop(id,event)" ondragover="allowDrop(event)"></div></td>
+        		<td><div id="paperBox" ondrop="drop(id,event)" ondragover="allowDrop(event)"></div></td>
+        		<td><div id="scissorsBox" ondrop="drop(id,event)" ondragover="allowDrop(event)"></div></td>
+        	</tr>
+        	<tr>
+        		<td><img id="stone" src="images/stone.jpg" title="DS Logo" alt="DS Logo" draggable="true" ondragstart="drag(event)" style="width:120px;height:100px"></td>
+        		<td><img id="paper" src="images/paper.jpg" title="DS Logo" alt="DS Logo" draggable="true" ondragstart="drag(event)" style="width:120px;height:100px"></td>
+        		<td><img id="scissors" src="images/scissors.jpg" title="DS Logo" alt="DS Logo" draggable="true" ondragstart="drag(event)" style="width:120px;height:100px"></td>
+        	</tr>
+        </table>  
+          
+        
+
+
+ 
+            <script>    
+            	function allowDrop(ev)    
+            		{    
+                		console.log("trying to drop "+ev)
+                		ev.preventDefault();    
+            		}    
+    
+            function drag(ev)    
+            {    
+                ev.dataTransfer.setData("text", ev.target.id);    
+            }    
+    
+            function drop(id,ev)    
+            {    
+                console.log("box ID is "+id)
+                console.log("Trimmed ID is "+id.substring(0,id.length-3))
+                var boxtext=id.substring(0,id.length-3)
+                ev.preventDefault();    
+                var data = ev.dataTransfer.getData("text"); 
+                console.log(data)
+                if (data!=boxtext) {
+                    alert("No No No no No")
+                                    }  else {
+                //console.log(document.getElementById(data))
+                ev.target.appendChild(document.getElementById(data));
+                }
+            }
+            //     function dropPaper(id,ev)    
+            // {    
+            //     console.log("box ID is "+id)
+            //     ev.preventDefault();    
+            //     var data = ev.dataTransfer.getData("text"); 
+            //     console.log(data)
+            //     if (data!="paper") {
+            //         alert("No No No no No")
+            //                         }  else {
+            //     //console.log(document.getElementById(data))
+            //     ev.target.appendChild(document.getElementById(data));
+            //     }
+            // }
+            //     function dropScissors(id,ev)    
+            // {    
+            //     console.log("box ID is "+id)
+            //     ev.preventDefault();    
+            //     var data = ev.dataTransfer.getData("text"); 
+            //     console.log(data)
+            //     if (data!=="scissors") {
+            //         alert("No No No no No")
+            //                         }  else {
+            //     //console.log(document.getElementById(data))
+            //     ev.target.appendChild(document.getElementById(data));
+            //     }  
+            // }
+             
+                
+
+    </script>      
+</html>    
